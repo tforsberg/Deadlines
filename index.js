@@ -1,13 +1,54 @@
-var express = require('express');
-var app = express();
+var mongoose = require('mongoose'),
+    http = require("http");
 
-app.set('port', (process.env.PORT || 5000));
-app.use(express.static(__dirname + '/public'));
+var username = 'kahdev15';
+var password = 'Clermont16';
 
-app.get('/', function(request, response) {
-  response.send('Hello World!');
+mongoose.connect('mongodb://'+username+':'+password+'@ds053370.mongolab.com:53370/com_khalidhoffman_mongodb');
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function (callback) {
+    console.log('successfully connected.');
 });
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+var TaskSchema = new mongoose.Schema({
+    name: String,
+    dueDate: {type: Date, default: Date.now},
+    notes: String,
+    comments: [
+        {
+            body: String,
+            author: String,
+            postTime: {type: Date, default: Date.now}
+        }
+    ]
 });
+
+var Task = mongoose.model('Task', TaskSchema, 'Deadlines');
+
+var newTask = new Task({
+    name: 'updated task name',
+    dueDate: new Date(),
+    notes: 'task Notes',
+    comments: []
+});
+
+//Task.findOneAndUpdate
+
+//newTask.save(function (err) {
+//    if (err) {
+//        console.log('error:', err);
+//    }
+//    console.log('success');
+//});
+
+
+http.createServer(function(request,response){
+    console.log(request);
+    response.writeHead(200, {'Content-Type': 'text/plain'});
+    response.write('hello world\n');
+    response.write('request:\n');
+    response.write(request.url);
+    response.end();
+}).listen(8080);
