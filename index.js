@@ -51,6 +51,7 @@ http.createServer(function(request,response){
     response.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     response.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
     response.setHeader('Cache-Control', 'no-cache');
+    response.write('Request received');
 
     request.on('data', function(data) {
         //if (data.name){
@@ -72,7 +73,6 @@ http.createServer(function(request,response){
                     }
                     response.end('Successfully removed task');
                 });
-                response.end();
                 break;
             case 'PUT':
             case 'POST':
@@ -117,7 +117,6 @@ http.createServer(function(request,response){
                 }
                 response.end(JSON.stringify(docs));
             });
-            response.end();
             break;
         default:
 
