@@ -72,6 +72,7 @@ http.createServer(function(request,response){
                     }
                     response.end('Successfully removed task');
                 });
+                response.end();
                 break;
             case 'PUT':
             case 'POST':
@@ -116,6 +117,7 @@ http.createServer(function(request,response){
                 }
                 response.end(JSON.stringify(docs));
             });
+            response.end();
             break;
         default:
 
