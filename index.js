@@ -49,6 +49,15 @@ http.createServer(function(request,response){
         //if (data.name){
         //    console.log(op, data);
         //} else{
+
+
+        response.statusCode = 200;
+        //response.setHeader("Content-Type", "text/html");
+        response.setHeader('Access-Control-Allow-Origin', '*');
+        response.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+        response.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+        response.setHeader('Cache-Control', 'no-cache');
+
         switch(request.method){
             case 'DELETE':
                 var deletedTask = JSON.parse(data);
@@ -94,12 +103,6 @@ http.createServer(function(request,response){
         }
     });
 
-    response.statusCode = 200;
-    //response.setHeader("Content-Type", "text/html");
-    response.setHeader('Access-Control-Allow-Origin', '*');
-    response.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    response.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-    response.setHeader('Cache-Control', 'no-cache');
 
     switch(request.method){
         case 'GET':
@@ -118,7 +121,7 @@ http.createServer(function(request,response){
 
             //console.log(op[(op.length-1)]);
             response.setHeader('Content-Type', 'text/plain');
-            response.write('Operation: invalid\n');
+            response.write('Operation: invalid');
             //console.log('Operation: invalid: '+op);
             //console.log('trailers:', request.trailers);
             response.end();
