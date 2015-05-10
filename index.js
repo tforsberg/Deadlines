@@ -110,7 +110,7 @@ http.createServer(function(request,response){
             break;
         default:
             //console.log(op[(op.length-1)]);
-            response.writeHead(200, {'Content-Type': 'text/plain'});
+            response.setHeader(200, {'Content-Type': 'text/plain'});
             response.write('Operation: invalid\n');
             //console.log('Operation: invalid: '+op);
             //console.log('trailers:', request.trailers);
