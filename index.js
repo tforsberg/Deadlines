@@ -94,6 +94,7 @@ http.createServer(function(request,response){
     response.setHeader('Access-Control-Allow-Origin', '*');
     response.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     response.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+    response.setHeader('Cache-Control', 'no-cache');
 
     switch(request.method){
         case 'GET':
