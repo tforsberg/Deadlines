@@ -60,6 +60,7 @@ http.createServer(function(request,response){
                     } else{
                         console.log('Successfully removed task');
                     }
+                    response.end();
                 });
                 break;
             case 'PUT':
@@ -82,10 +83,13 @@ http.createServer(function(request,response){
                         } else{
                             console.log('Successfully updated task');
                         }
+                        response.end();
                     });
+
                 break;
             default:
                 console.log('invalid method');
+                response.end();
                 break;
         }
     });
