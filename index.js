@@ -70,7 +70,7 @@ http.createServer(function(request,response){
                     } else{
                         console.log('Successfully removed task');
                     }
-                    response.end();
+                    response.end('Successfully removed task');
                 });
                 break;
             case 'PUT':
@@ -92,7 +92,7 @@ http.createServer(function(request,response){
                         } else{
                             console.log('Successfully updated task');
                         }
-                        response.end();
+                        response.end('Successfully updated task');
                     });
 
                 break;
