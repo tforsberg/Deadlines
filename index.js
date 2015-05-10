@@ -90,7 +90,8 @@ http.createServer(function(request,response){
         }
     });
 
-    response.setHeader("Content-Type", "text/html");
+    response.statusCode = 200;
+    //response.setHeader("Content-Type", "text/html");
     response.setHeader('Access-Control-Allow-Origin', '*');
     response.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     response.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
@@ -99,6 +100,7 @@ http.createServer(function(request,response){
     switch(request.method){
         case 'GET':
             // send collection json
+
             response.setHeader('Content-Type', 'application/json');
             Task.find({}, function (err, docs) {
                 if (err){
@@ -109,8 +111,9 @@ http.createServer(function(request,response){
             });
             break;
         default:
+
             //console.log(op[(op.length-1)]);
-            response.setHeader(200, {'Content-Type': 'text/plain'});
+            response.setHeader('Content-Type', 'text/plain');
             response.write('Operation: invalid\n');
             //console.log('Operation: invalid: '+op);
             //console.log('trailers:', request.trailers);
