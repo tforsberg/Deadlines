@@ -38,91 +38,96 @@ http.createServer(function(request,response){
         op = urlArray[(urlArray.length-1)];
 
     //console.log('request: ',request);
-    console.log('method:'+request.method);
+    console.log('New Request - method:'+request.method);
     //console.log('url:'+ URLParser.parse(request.url));
     //console.log('headers: ', request.headers);
     //request.on('close',function(){
     //    console.log('close.trailers:', request.trailers);
     //});
 
-    response.statusCode = 200;
+    response.statusCode = 204;
     response.setHeader('Content-Type', 'text/plain');
     response.setHeader('Access-Control-Allow-Origin', '*');
     response.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     response.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
     response.setHeader('Cache-Control', 'no-cache');
 
-    request.on('data', function(data) {
-        //if (data.name){
-        //    console.log(op, data);
-        //} else{
+    var requestData = '';
 
+    request.on('data', function(chunk) {
+        console.log('receiving request data');
+        requestData += chunk;
+    });
 
-
+    request.on('end', function(){
         switch(request.method){
             case 'DELETE':
-                var deletedTask = JSON.parse(data);
+                var deletedTask = JSON.parse(requestData);
                 Task.remove({
                     id : deletedTask.id
                 }, function (err) {
+                    //response.end('Successfully removed task');
+                    response.end();
                     if (err){
-                        console.log('Failed to remove task:', err);
+                        console.log('(end) Failed remove op:', err);
                     } else{
-                        console.log('Successfully removed task');
+                        console.log('(end) remove op');
                     }
-                    response.end('Successfully removed task');
                 });
                 break;
             case 'PUT':
             case 'POST':
-                var taskData = JSON.parse(data);
+                var taskData = JSON.parse(requestData);
+                console.log('updating item');
                 Task.findOneAndUpdate(
                     { id: taskData.id},
                     {
-                        name: taskData.name,
-                        dueDate: taskData.dueDate,
-                        notes: taskData.notes,
-                        comments: taskData.comments
+                        name: taskData.name || 'n/a',
+                        dueDate: taskData.dueDate || new Date(),
+                        notes: taskData.notes  || '',
+                        comments: taskData.comments || []
                     },
                     {
                         upsert: true
                     }, function (err) {
+                        //response.end('Successfully updated task');
+                        response.end();
+
                         if (err){
-                            console.log('Failed to update task:', err);
+                            console.log('(end) FAILED update op:', err);
                         } else{
-                            console.log('Successfully updated task');
+                            console.log('(end) update op');
                         }
-                        response.end('Successfully updated task');
                     });
 
                 break;
-            default:
-                console.log('invalid method');
+            case 'GET':
+                // send collection json
+
+                Task.find({}, function (err, docs) {
+                    if (err){
+                        console.log(err);
+                        return;
+                    }
+
+                    response.statusCode = 200;
+                    response.setHeader('Content-Type', 'application/json');
+                    response.end(JSON.stringify(docs));
+                    console.log('(end) read op');
+                });
+                break;
+            case 'OPTIONS':
+
+                //console.log(op[(op.length-1)]);
+                //console.log('Operation: invalid: '+op);
+                //console.log('trailers:', request.trailers);
                 response.end();
+                console.log('(end) default OPTIONS no-op');
+                break;
+            default:
+                response.end();
+                console.log('(end) INVALID op');
                 break;
         }
     });
-
-
-    switch(request.method){
-        case 'GET':
-            // send collection json
-
-            response.setHeader('Content-Type', 'application/json');
-            Task.find({}, function (err, docs) {
-                if (err){
-                    console.log(err);
-                    return;
-                }
-                response.end(JSON.stringify(docs));
-            });
-            break;
-        default:
-
-            //console.log(op[(op.length-1)]);
-            //console.log('Operation: invalid: '+op);
-            //console.log('trailers:', request.trailers);
-            response.end('Operation: invalid');
-            break;
-    }
 }).listen(process.env.PORT || 5000);
