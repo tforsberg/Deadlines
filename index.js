@@ -78,6 +78,28 @@ http.createServer(function(request,response){
             case 'PUT':
             case 'POST':
                 var taskData = JSON.parse(requestData);
+
+                if(op == 'list'){
+                    console.log('updating list:', requestData);
+                    //Task.find({}, function (err, docs) {
+                    //    if (err){
+                    //        response.end();
+                    //        console.log('(end) FAILED update list op: ', err);
+                    //        return;
+                    //    }
+                    //    docs = taskData;
+                    //    docs.save(function (err) {
+                    //        response.end();
+                    //        if (err) {
+                    //            console.log('(end) FAILED update list op: ', err);
+                    //        } else{
+                    //            console.log('(end) update list op');
+                    //        }
+                    //    });
+                    //});
+                    break;
+                }
+
                 console.log('updating item');
                 Task.findOneAndUpdate(
                     { id: taskData.id},
