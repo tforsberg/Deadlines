@@ -19,6 +19,7 @@ db.once('open', function (callback) {
 
 var TaskSchema = new mongoose.Schema({
     id : String,
+    mongoId : String,
     name: String,
     dueDate: {type: Date, default: Date.now},
     notes: String,
@@ -64,7 +65,7 @@ http.createServer(function(request,response){
             case 'DELETE':
                 var deletedTask = JSON.parse(requestData);
                 Task.remove({
-                    id : deletedTask.id
+                    id : deletedTask.mongoId
                 }, function (err) {
                     //response.end('Successfully removed task');
                     response.end();
@@ -105,6 +106,7 @@ http.createServer(function(request,response){
                 Task.findOneAndUpdate(
                     { id: taskData.id},
                     {
+                        mongoId : taskData.mongoId || -1,
                         name: taskData.name || 'n/a',
                         dueDate: taskData.dueDate || new Date(),
                         notes: taskData.notes  || '',
