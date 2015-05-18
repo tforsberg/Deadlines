@@ -104,7 +104,7 @@ http.createServer(function(request,response){
 
                 console.log('updating item');
                 Task.findOneAndUpdate(
-                    { id: taskData.id},
+                    { id: taskData.mongoId},
                     {
                         mongoId : taskData.mongoId || -1,
                         name: taskData.name || 'n/a',
