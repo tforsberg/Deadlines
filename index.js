@@ -1,29 +1,11 @@
 var mongoose = require('mongoose'),
-    http = require("http"),
     os = require("os"),
-    passport = require('passport'),
-    GoogleAuth = require('passport-google'),
     Hapi = require('hapi'),
-    bell = require('bell');
+    Bell = require('bell');
 
 //var fs = require('fs'),
 //    index = fs.readFileSync('index.html');
 
-passport.use(
-    new GoogleAuth.Strategy(
-        {
-            returnURL: 'http://khalidhoffman.solutions/deadlines',
-            realm: 'http://khalidhoffman.solutions/'
-        },
-        function(identifier, profile, done) {
-            console.log('google login 1.2');
-            User.findOrCreate({ openId: identifier }, function(err, user) {
-                console.log('google login 1.1');
-                done(err, user);
-            });
-        }
-    )
-);
 
 var username = 'kahdev15';
 var password = 'Clermont16';
@@ -52,11 +34,23 @@ var TaskSchema = new mongoose.Schema({
         }
     ]
 });
-var Task;
+var UserSchema = new mongoose.Schema({
+    id : String,
+    firstName : String,
+    lastName : String,
+    pic : String,
+    token : String
+});
+var Task = null,
+    User = null
+    isDevelopment = false;
 if (os.hostname() == 'kah-E6410'){
     Task = mongoose.model('Task', TaskSchema, 'Deadlines_Development');
+    User = mongoose.model('User', UserSchema, 'Deadlines_Users_Development');
+    isDevelopment = true;
 } else{
     Task = mongoose.model('Task', TaskSchema, 'Deadlines');
+    User = mongoose.model('User', UserSchema, 'Deadlines_Users');
 }
 
 
@@ -166,17 +160,49 @@ server.route({
     }
 });
 
-server.register(bell, function (err) {
+server.route({
+    method: 'GET',
+    path: '/user/{id}',
+    handler: function (request, reply) {
+
+        User.find({
+            id : request.params.id
+        }, function (err, docs) {
+            if (err){
+                console.log(err);
+                return;
+            }
+
+            //response.statusCode = 200;
+            //response.setHeader('Content-Type', 'application/json');
+            //response.end(JSON.stringify(docs));
+            console.log('(end) user read op');
+            reply(docs);
+        });
+    }
+});
+
+server.register(Bell, function (err) {
 
     // Declare an authentication strategy using the bell scheme
     // with the name of the provider, cookie encryption password,
     // and the OAuth client credentials.
-    server.auth.strategy('twitter', 'bell', {
-        provider: 'twitter',
-        password: 'cookie_encryption_password',
-        clientId: 'my_twitter_client_id',
-        clientSecret: 'my_twitter_client_secret',
-        isSecure: false     // Terrible idea but required if not using HTTPS
+    server.auth.strategy('google', 'bell', {
+        provider: 'google',
+        password: 'password',
+        isSecure: false,
+        // You'll need to go to https://console.developers.google.com and set up an application to get started
+        // Once you create your app, fill out "APIs & auth >> Consent screen" and make sure to set the email field
+        // Next, go to "APIs & auth >> Credentials and Create new Client ID
+        // Select "web application" and set "AUTHORIZED JAVASCRIPT ORIGINS" and "AUTHORIZED REDIRECT URIS"
+        // This will net you the clientId and the clientSecret needed.
+        // Also be sure to pass the redirect_uri as well. It must be in the list of "AUTHORIZED REDIRECT URIS"
+        clientId: '196527928799-s5fpgvs7un7lkmrqf15akk3lj0fdb8os.apps.googleusercontent.com',
+        clientSecret: 'Hu-IkwGhHkqtrG4-GM-Cy3tX',
+        providerParams: {
+            //redirect_uri: server.info.uri + '/deadlines'
+            redirect_uri: 'http://khalidhoffman.solutions/deadlines'
+        }
     });
 
     // Use the 'twitter' authentication strategy to protect the
@@ -185,179 +211,50 @@ server.register(bell, function (err) {
     // the database and sets some application state (cookie) with
     // the local application account information.
     server.route({
-        method: ['GET', 'POST'], // Must handle both GET and POST
-        path: '/login',          // The callback endpoint registered with the provider
+        method: '*',
+        path: '/login',
         config: {
-            auth: 'twitter',
+            auth: 'google',
             handler: function (request, reply) {
+                var credentials = request.auth.credentials;
+                User.findOneAndUpdate(
+                    { id: credentials.id},
+                    {
+                        id : credentials.profile.id,
+                        firstName : credentials.profile.name.first,
+                        lastName : credentials.profile.name.last,
+                        pic : credentials.profile.raw.picture,
+                        token : credentials.token
+                    },
+                    {
+                        upsert: true
+                    }, function (err) {
+                        //response.end('Successfully updated task');
+                        //response.end();
+                        //reply().code(204);
+                        if(isDevelopment){
+                            reply.redirect('http://192.168.1.9/deadlines#'+credentials.profile.id);
+                        } else{
+                            reply.redirect('http://khalidhoffman.solutions/deadlines#'+credentials.profile.id);
+                        }
 
-                if (!request.auth.isAuthenticated) {
-                    return reply('Authentication failed due to: ' + request.auth.error.message);
-                }
+                        if (err){
+                            console.log('(end) FAILED update op:', err);
+                        } else{
+                            console.log('(end) update op');
+                        }
+                    });
                 // Perform any account lookup or registration, setup local session,
                 // and redirect to the application. The third-party credentials are
                 // stored in request.auth.credentials. Any query parameters from
                 // the initial request are passed back via request.auth.credentials.query.
-                return reply.redirect('/home');
+                //reply(request.auth.credentials).redirect('http://192.168.1.9/deadlines');
+                //reply('<pre>' + JSON.stringify(request.auth.credentials, null, 4) + '</pre>');
             }
         }
     });
+
     server.start(function () {
         console.log('Server running at:', server.info.uri);
     });
 });
-
-//http.createServer(function(request,response){
-//    var urlArray  = request.url.split('/'),
-//        op = urlArray[(urlArray.length-1)],
-//        requestPath = request.url;
-//
-//    //console.log('request: ',request);
-//    console.log('New Request - method:',request.url);
-//    //console.log('url:'+ URLParser.parse(request.url));
-//    //console.log('headers: ', request.headers);
-//    //request.on('close',function(){
-//    //    console.log('close.trailers:', request.trailers);
-//    //});
-//
-//    response.statusCode = 204;
-//    response.setHeader('Content-Type', 'text/plain');
-//    response.setHeader('Access-Control-Allow-Origin', '*');
-//    response.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-//    response.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-//    response.setHeader('Cache-Control', 'no-cache');
-//
-//    var requestData = '';
-//
-//    request.on('data', function(chunk) {
-//        console.log('receiving request data');
-//        requestData += chunk;
-//    });
-//
-//    request.on('end', function(){
-//        switch(request.method){
-//            case 'DELETE':
-//                var deletedTask = JSON.parse(requestData);
-//                Task.remove({
-//                    id : deletedTask.mongoId
-//                }, function (err) {
-//                    //response.end('Successfully removed task');
-//                    response.end();
-//                    if (err){
-//                        console.log('(end) Failed remove op:', err);
-//                    } else{
-//                        console.log('(end) remove op');
-//                    }
-//                });
-//                break;
-//            case 'PUT':
-//            case 'POST':
-//                var taskData = JSON.parse(requestData);
-//
-//                if(op == 'list'){
-//                    console.log('updating list:', requestData);
-//                    //Task.find({}, function (err, docs) {
-//                    //    if (err){
-//                    //        response.end();
-//                    //        console.log('(end) FAILED update list op: ', err);
-//                    //        return;
-//                    //    }
-//                    //    docs = taskData;
-//                    //    docs.save(function (err) {
-//                    //        response.end();
-//                    //        if (err) {
-//                    //            console.log('(end) FAILED update list op: ', err);
-//                    //        } else{
-//                    //            console.log('(end) update list op');
-//                    //        }
-//                    //    });
-//                    //});
-//                    response.end();
-//                    break;
-//                }
-//
-//                switch(requestPath){
-//                    case '/auth/google':
-//                        console.log('google login 1.3');
-//                        passport.authenticate('google');
-//                        response.end();
-//                        break;
-//                    case '/auth/google/return':
-//                        console.log('google login 1.3');
-//                        passport.authenticate('google', {
-//                            successRedirect : '/',
-//                            failureRedirect : '/#failed'
-//                        });
-//                        response.end();
-//                        break;
-//                }
-//
-//                console.log('updating item');
-//                Task.findOneAndUpdate(
-//                    { id: taskData.mongoId},
-//                    {
-//                        mongoId : taskData.mongoId || -1,
-//                        name: taskData.name || 'n/a',
-//                        dueDate: taskData.dueDate || new Date(),
-//                        notes: taskData.notes  || '',
-//                        comments: taskData.comments || []
-//                    },
-//                    {
-//                        upsert: true
-//                    }, function (err) {
-//                        //response.end('Successfully updated task');
-//                        response.end();
-//
-//                        if (err){
-//                            console.log('(end) FAILED update op:', err);
-//                        } else{
-//                            console.log('(end) update op');
-//                        }
-//                    });
-//
-//                break;
-//            case 'GET':
-//                // send collection json
-//
-//                switch(requestPath){
-//                    case '/auth/google':
-//                        console.log('google login 1.5', passport);
-//                        passport.authenticate('google');
-//                        response.end();
-//                        break;
-//                    case '/auth/google/return':
-//                        console.log('google login 1.4');
-//                        passport.authenticate('google', {
-//                            successRedirect : '/',
-//                            failureRedirect : '/#failed'
-//                        });
-//                        response.end();
-//                        break;
-//                }
-//                Task.find({}, function (err, docs) {
-//                    if (err){
-//                        console.log(err);
-//                        return;
-//                    }
-//
-//                    response.statusCode = 200;
-//                    response.setHeader('Content-Type', 'application/json');
-//                    response.end(JSON.stringify(docs));
-//                    console.log('(end) read op');
-//                });
-//                break;
-//            case 'OPTIONS':
-//
-//                //console.log(op[(op.length-1)]);
-//                //console.log('Operation: invalid: '+op);
-//                //console.log('trailers:', request.trailers);
-//                response.end();
-//                console.log('(end) default OPTIONS no-op');
-//                break;
-//            default:
-//                response.end();
-//                console.log('(end) INVALID op');
-//                break;
-//        }
-//    });
-//}).listen(process.env.PORT || 5000);
