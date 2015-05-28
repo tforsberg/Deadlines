@@ -213,9 +213,9 @@ server.register(Bell, function (err) {
     server.route({
         method: '*',
         path: '/login',
-        location: 'http://khalidhoffman.solutions',
         config: {
             auth: 'google',
+            location: 'http://khalidhoffman.solutions',
             handler: function (request, reply) {
                 var credentials = request.auth.credentials;
                 User.findOneAndUpdate(
