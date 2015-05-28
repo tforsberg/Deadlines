@@ -9,7 +9,11 @@
   "dependencies": {
     "express": "~4.9.x",
     "mongodb": "~2.0",
-    "mongoose": ">=4.0.2"
+    "mongoose": ">=4.0.2",
+    "passport" : ">=0.2.1",
+    "passport-google" : ">=0.3.0",
+    "hapi" : ">=8.5.1",
+    "bell" : ">=2.8.0"
   },
   "engines": {
     "node": "0.12.2"
