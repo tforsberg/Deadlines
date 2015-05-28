@@ -62,7 +62,7 @@ if (os.hostname() == 'kah-E6410'){
 
 var server = new Hapi.Server();
 server.connection({
-    port: 5000,
+    port: process.env.PORT || 5000,
     routes: {
         cors: true
     }
