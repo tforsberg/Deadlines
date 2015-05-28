@@ -213,6 +213,7 @@ server.register(Bell, function (err) {
     server.route({
         method: '*',
         path: '/login',
+        location: 'http://khalidhoffman.solutions',
         config: {
             auth: 'google',
             handler: function (request, reply) {
