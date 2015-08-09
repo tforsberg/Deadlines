@@ -370,7 +370,7 @@ var server = http.createServer(
     function (request, response) {
         var path = String(request.url),
         pathObj = url.parse(path, true);
-        response.setHeader('Access-Control-Allow-Origin', (config.isDevMode)?'http://'+hostName+':'+portNumber:' https://hidden-mesa-1606.herokuapp.com/');
+        response.setHeader('Access-Control-Allow-Origin', googleAuthRedirectURI;
 
         switch (pathObj.pathname) {
             case '/deadlines':
