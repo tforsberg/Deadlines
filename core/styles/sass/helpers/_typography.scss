@@ -1,0 +1,73 @@
+@import 'compass';
+@import 'functions';
+@import 'variables';
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600|Fira+Sans:300,400|Lobster);
+
+@import 'compass';
+@import 'functions';
+@import 'variables';
+
+@font-face {
+  font-family: 'fontello';
+  src: url('../fonts/fontello.eot?2865792');
+  src: url('../fonts/fontello.eot?2865792#iefix') format('embedded-opentype'),
+  url('../fonts/fontello.woff?2865792') format('woff'),
+  url('../fonts/fontello.ttf?2865792') format('truetype'),
+  url('../fonts/fontello.svg?2865792#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin content-icon($name){
+  font-family: 'fontello';
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  font-variant: normal;
+  text-transform: none;
+
+  @each $media-name, $char in
+                  (facebook, $char-icon-fb),
+                  (twitter, $char-icon-tw),
+                  (youtube, $char-icon-yt),
+                  (instagram, $char-icon-in),
+                  (linkedin, $char-icon-ln) {
+
+    @if ($media-name == $name){
+      content: $char;
+    }
+  }
+}
+
+@mixin font-a($font-weight: false) {
+  font-family: sans-serif;
+
+  @if ($font-weight){
+    @if(type_of($font-weight) == 'string'){
+      $font-weights : ( ("regular": 400),("semi-bold": 500), ("bold": 700));
+      font-weight: map_get($font-weights, $font-weight);
+    } @else {
+      font-weight: $font-weight;
+    }
+  }
+}
+
+@mixin font-b($font-weight: false) {
+  font-family: serif;
+  @if ($font-weight){
+    font-weight: $font-weight;
+  }
+}
+
+@mixin font-open-source-sans-pro{
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+@mixin font-fira-sans{
+  font-family: 'Fira Sans', sans-serif;
+}
+
+@mixin font-lobster{
+  font-family: 'Lobster', cursive;
+}
+

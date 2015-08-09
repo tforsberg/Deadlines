@@ -1,0 +1,44 @@
+<%= views.header.innerHTML %>
+<div id="sidebar" class="ui left vertical inverted labeled icon sidebar overlay menu">
+    <a class="item toggle-sort name" href="#sort-by-name">
+        <i class="sort alphabet ascending icon"></i>
+        Sort by name
+    </a>
+    <a class="item toggle-sort dueDate" href="#sort-by-date">
+        <i class="sort active numeric ascending icon"></i>
+        Sort by date
+    </a>
+    <a class="item link-login" href="/login">
+        <i class="sign in icon"></i>
+        Login
+    </a>
+</div>
+<div class="page-container pusher">
+    <div id="toggle-sidebar" class="ui black big launch right attached fixed button ">
+        <i class="content icon"></i>
+    </div>
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+    <div class="app-title">
+        <h1>Deadlines</h1>
+        <div class="wrap-login-info">
+            <div class="login-info">
+                <div class="wrap-text">
+                    <span class="welcome-message">Hello, </span>
+                    <span class="user-name">User</span>
+                </div>
+                <div class="wrap-user-icon">
+                    <div class="user-icon"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id='todo-list'>
+        <ul id='list' class="ui cards">
+        </ul>
+        <a class="btn-add btn-floating btn-large waves-effect waves-light yellow"><i class="mdi-content-add"></i></a>
+    </div>
+</div>
+<%= views.footer.innerHTML%>

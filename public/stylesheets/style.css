@@ -1,0 +1,712 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600|Fira+Sans:300,400|Lobster);
+@font-face {
+  font-family: 'fontello';
+  src: url("../fonts/fontello.eot?2865792");
+  src: url("../fonts/fontello.eot?2865792#iefix") format("embedded-opentype"), url("../fonts/fontello.woff?2865792") format("woff"), url("../fonts/fontello.ttf?2865792") format("truetype"), url("../fonts/fontello.svg?2865792#fontello") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/*	==================================================
+	Footer
+	==================================================  */
+/*	==================================================
+	Header
+	==================================================  */
+/* line 10, ../../core/styles/sass/base/_header.scss */
+.app-title {
+  overflow: hidden;
+}
+/* line 13, ../../core/styles/sass/base/_header.scss */
+.app-title .wrap-login-info {
+  font-family: 'Source Sans Pro', sans-serif;
+  float: right;
+  position: relative;
+  right: 1em;
+  top: 25%;
+}
+/* line 21, ../../core/styles/sass/base/_header.scss */
+.app-title .wrap-text,
+.app-title .wrap-user-icon {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+}
+/* line 26, ../../core/styles/sass/base/_header.scss */
+.app-title .wrap-text {
+  color: #bababa;
+}
+@media (max-width: 360px) {
+  /* line 26, ../../core/styles/sass/base/_header.scss */
+  .app-title .wrap-text {
+    display: none;
+  }
+}
+/* line 34, ../../core/styles/sass/base/_header.scss */
+.app-title .wrap-user-icon {
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  height: 1.5em;
+  overflow: hidden;
+  width: 1.5em;
+}
+/* line 41, ../../core/styles/sass/base/_header.scss */
+.app-title .user-icon {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("http://placehold.it/500x500");
+  width: 100%;
+  height: 100%;
+}
+
+/* line 3, ../../core/styles/sass/base/_page.scss */
+#test1 {
+  background: red;
+  display: inline-block;
+  height: calc(100% - 2em);
+  width: 50%;
+}
+
+/* line 11, ../../core/styles/sass/base/_page.scss */
+#test2 {
+  background: blue;
+  display: inline-block;
+  height: calc(100% - 2em);
+  width: calc(50%- 5px);
+}
+
+/* line 18, ../../core/styles/sass/base/_page.scss */
+.container {
+  height: 10em;
+}
+
+/*	==================================================
+	IE fixes
+	==================================================  */
+/* line 6, ../../core/styles/sass/base/_ie.scss */
+.ie8-disclaimer {
+  display: none;
+}
+
+/* line 10, ../../core/styles/sass/base/_ie.scss */
+.lte9 .ie8-disclaimer {
+  display: block;
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  right: 1em;
+  bottom: 1em;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/*	==================================================
+	Test
+	==================================================  */
+/* line 7, ../../core/styles/sass/base/_test.scss */
+html,
+body {
+  height: 100%;
+}
+
+/* line 12, ../../core/styles/sass/base/_test.scss */
+body {
+  position: relative;
+  overflow-y: scroll;
+}
+/* line 18, ../../core/styles/sass/base/_test.scss */
+body.pushable > .pusher {
+  background: #eee;
+}
+
+/* line 25, ../../core/styles/sass/base/_test.scss */
+.app-title {
+  -moz-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -moz-box-shadow: 0 1px 6px -1px #ACACAC;
+  -webkit-box-shadow: 0 1px 6px -1px #ACACAC;
+  box-shadow: 0 1px 6px -1px #ACACAC;
+  font-family: 'Lobster', cursive;
+  background-color: #FCF09E;
+  color: #B22622;
+  margin: 0 auto;
+  height: 3em;
+  left: 0;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+/* line 41, ../../core/styles/sass/base/_test.scss */
+.app-title:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+/* line 48, ../../core/styles/sass/base/_test.scss */
+.app-title h1 {
+  font-family: 'Lobster', cursive;
+  display: inline-block;
+  font-size: 2.5em;
+  line-height: 1em;
+  margin: 0;
+  max-width: 10em;
+  padding: .15em 0;
+  vertical-align: middle;
+}
+
+/* line 60, ../../core/styles/sass/base/_test.scss */
+#toggle-sidebar {
+  -moz-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  padding-right: 0;
+  position: fixed;
+  top: 3em;
+  left: 0;
+  z-index: 5;
+}
+
+/* line 71, ../../core/styles/sass/base/_test.scss */
+#todo-list {
+  padding-top: 3em;
+}
+
+/* line 77, ../../core/styles/sass/base/_test.scss */
+.wrap-toggle-section {
+  display: none;
+  overflow: hidden;
+}
+
+/* line 89, ../../core/styles/sass/base/_test.scss */
+.ui.left.overlay.sidebar {
+  z-index: 3;
+}
+
+/* line 93, ../../core/styles/sass/base/_test.scss */
+#list {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-transition: visiblity 0.4s linear;
+  -o-transition: visiblity 0.4s linear;
+  -webkit-transition: visiblity 0.4s linear;
+  transition: visiblity 0.4s linear;
+  display: inline-block;
+  margin: 0 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 0 1em 0;
+  text-align: center;
+  width: 100%;
+  visibility: hidden;
+}
+/* line 106, ../../core/styles/sass/base/_test.scss */
+body.initialized #list {
+  visibility: visible;
+  -moz-animation: fadeIn 0.4s;
+  -webkit-animation: fadeIn 0.4s;
+  animation: fadeIn 0.4s;
+}
+/* line 111, ../../core/styles/sass/base/_test.scss */
+#list > .card {
+  display: inline-block;
+  text-align: left;
+  vertical-align: top;
+}
+
+/* line 118, ../../core/styles/sass/base/_test.scss */
+.ui.cards > .card {
+  width: 280px;
+}
+
+/* line 156, ../../core/styles/sass/base/_test.scss */
+.todo-item .wrap-date-input,
+.todo-item .wrap-name-input,
+.todo-item .wrap-time-input {
+  margin: .5em auto;
+}
+/* line 163, ../../core/styles/sass/base/_test.scss */
+.todo-item input {
+  color: #B22622;
+}
+/* line 191, ../../core/styles/sass/base/_test.scss */
+.todo-item .extra.content .button {
+  margin: 0.5em auto;
+}
+
+/* line 215, ../../core/styles/sass/base/_test.scss */
+.btn-add {
+  -moz-transform: translate3d(0, 0, 1px);
+  -webkit-transform: translate3d(0, 0, 1px);
+  transform: translate3d(0, 0, 1px);
+  bottom: 2em;
+  left: auto;
+  position: fixed;
+  right: 2em;
+  top: auto;
+  visibility: hidden;
+  z-index: 5;
+}
+/* line 246, ../../core/styles/sass/base/_test.scss */
+body.initialized .btn-add {
+  visibility: visible;
+}
+
+/*	==================================================
+	Comments
+	==================================================  */
+/* line 10, ../../core/styles/sass/partials/_comments.scss */
+.comment-bar-toggle .label-hide {
+  display: inline-block;
+  overflow: hidden;
+  max-width: 0;
+  vertical-align: bottom;
+}
+/* line 19, ../../core/styles/sass/partials/_comments.scss */
+.comment-bar-toggle.toggled .label-hide {
+  max-width: 100%;
+}
+
+/* line 25, ../../core/styles/sass/partials/_comments.scss */
+.comment-bar {
+  padding-bottom: 1em;
+  overflow: hidden;
+  text-align: left;
+  width: 100%;
+}
+/* line 43, ../../core/styles/sass/partials/_comments.scss */
+.comment-bar .comment-input {
+  max-height: 1em !important;
+}
+
+/*	==================================================
+	Different Perspective Logo/Login
+	==================================================  */
+/* line 11, ../../core/styles/sass/partials/_dp.scss */
+#dp {
+  -moz-transition: background-position 250ms cubic-bezier(0.52, -0.03, 0.51, 1.415);
+  -o-transition: background-position 250ms cubic-bezier(0.52, -0.03, 0.51, 1.415);
+  -webkit-transition: background-position 250ms cubic-bezier(0.52, -0.03, 0.51, 1.415);
+  transition: background-position 250ms cubic-bezier(0.52, -0.03, 0.51, 1.415);
+  text-align: center;
+  width: 230px;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: .75em;
+  background: url(../img/powered.png) no-repeat;
+  background: url(../img/powered.svg) no-repeat;
+  background-position: center top;
+  background-size: 100% 200%;
+  display: block;
+  position: relative;
+  top: 2.5em;
+}
+/* line 27, ../../core/styles/sass/partials/_dp.scss */
+#dp a {
+  -moz-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  -webkit-transform: scale(0, 0);
+  transform: scale(0, 0);
+  -moz-transition: -moz-transform 250ms cubic-bezier(0.52, -0.03, 0.51, 1.415), background-position 250ms cubic-bezier(0.52, -0.03, 0.51, 1.415);
+  -o-transition: -o-transform 250ms cubic-bezier(0.52, -0.03, 0.51, 1.415), background-position 250ms cubic-bezier(0.52, -0.03, 0.51, 1.415);
+  -webkit-transition: -webkit-transform 250ms cubic-bezier(0.52, -0.03, 0.51, 1.415), background-position 250ms cubic-bezier(0.52, -0.03, 0.51, 1.415);
+  transition: transform 250ms cubic-bezier(0.52, -0.03, 0.51, 1.415), background-position 250ms cubic-bezier(0.52, -0.03, 0.51, 1.415);
+  color: #ffffff;
+  text-decoration: none;
+  position: relative;
+  top: 25%;
+  text-align: center;
+  width: 19%;
+  padding: 0 15%;
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+/* line 46, ../../core/styles/sass/partials/_dp.scss */
+#dp #dp-powered {
+  float: left;
+  text-align: right;
+  padding-right: 32px;
+  width: 25%;
+  padding-left: 10%;
+}
+/* line 54, ../../core/styles/sass/partials/_dp.scss */
+#dp #dp-login {
+  float: right;
+  text-align: left;
+  padding-left: 32px;
+}
+/* line 61, ../../core/styles/sass/partials/_dp.scss */
+#dp a:hover {
+  color: #bc6c50;
+}
+
+/* line 66, ../../core/styles/sass/partials/_dp.scss */
+#dp:hover {
+  background-position: center bottom;
+}
+/* line 68, ../../core/styles/sass/partials/_dp.scss */
+#dp:hover a {
+  -moz-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -webkit-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+
+/**********************************
+Google Maps
+***********************************/
+/* line 7, ../../core/styles/sass/partials/_google-map.scss */
+.google-map-infowindow {
+  text-align: center;
+  min-width: 10em;
+}
+/* line 10, ../../core/styles/sass/partials/_google-map.scss */
+.google-map-infowindow p {
+  font-weight: bold;
+  display: block;
+}
+/* line 15, ../../core/styles/sass/partials/_google-map.scss */
+.google-map-infowindow a {
+  font-size: 10px;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
+
+/*	==================================================
+	Hamburger Menu
+	==================================================  */
+/* line 9, ../../core/styles/sass/partials/_menu-bars.scss */
+#hamburger-menu, .hamburger-menu {
+  width: 2em;
+  height: 2em;
+  position: absolute;
+  color: #fff;
+  right: 80px;
+  top: 46px;
+  display: block;
+  z-index: 2;
+}
+/* line 22, ../../core/styles/sass/partials/_menu-bars.scss */
+#hamburger-menu.clicked .menubars, .hamburger-menu.clicked .menubars {
+  background-color: rgba(255, 255, 255, 0);
+}
+/* line 25, ../../core/styles/sass/partials/_menu-bars.scss */
+#hamburger-menu.clicked .menubars:before, .hamburger-menu.clicked .menubars:before {
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  width: 28px;
+}
+/* line 30, ../../core/styles/sass/partials/_menu-bars.scss */
+#hamburger-menu.clicked .menubars:after, .hamburger-menu.clicked .menubars:after {
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  width: 28px;
+}
+/* line 38, ../../core/styles/sass/partials/_menu-bars.scss */
+#hamburger-menu .menubars, .hamburger-menu .menubars {
+  -moz-transition: background-color 0.4s ease;
+  -o-transition: background-color 0.4s ease;
+  -webkit-transition: background-color 0.4s ease;
+  transition: background-color 0.4s ease;
+  width: 20px;
+  height: 4px;
+  background: green;
+  position: absolute;
+  right: 0;
+}
+/* line 48, ../../core/styles/sass/partials/_menu-bars.scss */
+#hamburger-menu .menubars:before, .hamburger-menu .menubars:before {
+  -moz-transition: top 0.4s ease, right 0.4s ease, bottom 0.4s ease, -moz-transform 0.4s ease;
+  -o-transition: top 0.4s ease, right 0.4s ease, bottom 0.4s ease, -o-transform 0.4s ease;
+  -webkit-transition: top 0.4s ease, right 0.4s ease, bottom 0.4s ease, -webkit-transform 0.4s ease;
+  transition: top 0.4s ease, right 0.4s ease, bottom 0.4s ease, transform 0.4s ease;
+  -moz-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  display: block;
+  content: "";
+  background-color: green;
+  top: -10px;
+  width: 20px;
+  height: 4px;
+  position: absolute;
+}
+/* line 65, ../../core/styles/sass/partials/_menu-bars.scss */
+#hamburger-menu .menubars:after, .hamburger-menu .menubars:after {
+  -moz-transition: top 0.4s ease, right 0.4s ease, bottom 0.4s ease, -moz-transform 0.4s ease;
+  -o-transition: top 0.4s ease, right 0.4s ease, bottom 0.4s ease, -o-transform 0.4s ease;
+  -webkit-transition: top 0.4s ease, right 0.4s ease, bottom 0.4s ease, -webkit-transform 0.4s ease;
+  transition: top 0.4s ease, right 0.4s ease, bottom 0.4s ease, transform 0.4s ease;
+  -moz-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  display: block;
+  content: "";
+  background: green;
+  bottom: -10px;
+  width: 20px;
+  height: 4px;
+  position: absolute;
+}
+
+/*	==================================================
+	Sidebar
+	==================================================  */
+/* line 12, ../../core/styles/sass/partials/_sidebar.scss */
+#sidebar .toggle-sort i {
+  -moz-transition: color 0.4s ease;
+  -o-transition: color 0.4s ease;
+  -webkit-transition: color 0.4s ease;
+  transition: color 0.4s ease;
+}
+/* line 15, ../../core/styles/sass/partials/_sidebar.scss */
+#sidebar .toggle-sort i.active {
+  color: #FCF09E;
+}
+
+/*	==================================================
+	Spinner
+	==================================================  */
+/* line 6, ../../core/styles/sass/partials/_spinner.scss */
+.loader,
+.loader:before,
+.loader:after {
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* line 11, ../../core/styles/sass/partials/_spinner.scss */
+.loader:before,
+.loader:after {
+  position: absolute;
+  content: '';
+}
+
+/* line 16, ../../core/styles/sass/partials/_spinner.scss */
+.loader:before {
+  -moz-border-radius: 10.2em 0 0 10.2em;
+  -webkit-border-radius: 10.2em;
+  border-radius: 10.2em 0 0 10.2em;
+  -moz-animation: load2 2s infinite ease 1.5s;
+  -webkit-animation: load2 2s infinite ease 1.5s;
+  animation: load2 2s infinite ease 1.5s;
+  -moz-transform-origin: 5.2em 5.1em 50%;
+  -ms-transform-origin: 5.2em 5.1em 50%;
+  -webkit-transform-origin: 5.2em 5.1em 50%;
+  transform-origin: 5.2em 5.1em 50%;
+  width: 5.2em;
+  height: 10.2em;
+  background: #0dc5c1;
+  top: -0.1em;
+  left: -0.1em;
+}
+
+/* line 26, ../../core/styles/sass/partials/_spinner.scss */
+.loader {
+  -moz-box-shadow: inset 0 0 0 1em #fff;
+  -webkit-box-shadow: inset 0 0 0 1em #fff;
+  box-shadow: inset 0 0 0 1em #fff;
+  -moz-transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  font-size: 11px;
+  text-indent: -99999em;
+  margin: 55px auto;
+  position: relative;
+  width: 10em;
+  height: 10em;
+}
+
+/* line 36, ../../core/styles/sass/partials/_spinner.scss */
+.loader:after {
+  -moz-transform-origin: 0px 5.1em 50%;
+  -ms-transform-origin: 0px 5.1em 50%;
+  -webkit-transform-origin: 0px 5.1em 50%;
+  transform-origin: 0px 5.1em 50%;
+  -moz-animation: load2 2s infinite ease;
+  -webkit-animation: load2 2s infinite ease;
+  animation: load2 2s infinite ease;
+  -moz-border-radius: 0 10.2em 10.2em 0;
+  -webkit-border-radius: 0;
+  border-radius: 0 10.2em 10.2em 0;
+  width: 5.2em;
+  height: 10.2em;
+  background: #0dc5c1;
+  top: -0.1em;
+  left: 5.1em;
+}
+
+@-webkit-keyframes load2 {
+  0% {
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load2 {
+  0% {
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/* line 64, ../../core/styles/sass/partials/_spinner.scss */
+.spinner {
+  bottom: 0;
+  height: 40px;
+  left: 0;
+  margin: 100px auto;
+  position: fixed;
+  right: 0;
+  top: calc(50vh - 100px);
+  width: 40px;
+}
+/* line 74, ../../core/styles/sass/partials/_spinner.scss */
+body.initialized .spinner {
+  display: none;
+}
+
+@keyframes bounce2 {
+  0% {
+    -moz-transform: scale(0, 0);
+    -ms-transform: scale(0, 0);
+    -webkit-transform: scale(0, 0);
+    transform: scale(0, 0);
+  }
+  50% {
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  100% {
+    -moz-transform: scale(0, 0);
+    -ms-transform: scale(0, 0);
+    -webkit-transform: scale(0, 0);
+    transform: scale(0, 0);
+  }
+}
+/* line 86, ../../core/styles/sass/partials/_spinner.scss */
+.double-bounce1,
+.double-bounce2 {
+  -moz-animation: bounce2 2000ms infinite ease-in-out;
+  -webkit-animation: bounce2 2000ms infinite ease-in-out;
+  animation: bounce2 2000ms infinite ease-in-out;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  opacity: 0.6;
+  background-color: #fff;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/* line 100, ../../core/styles/sass/partials/_spinner.scss */
+.double-bounce2 {
+  -moz-animation-delay: -1000ms;
+  -webkit-animation-delay: -1000ms;
+  animation-delay: -1000ms;
+}
+
+/*	==================================================
+	Toast
+	==================================================  */
+@-moz-keyframes fadeInUp {
+  0% {
+    -moz-transform: translateY(20px);
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    -moz-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadeInUp {
+  0% {
+    -webkit-transform: translateY(20px);
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes fadeInUp {
+  0% {
+    -moz-transform: translateY(20px);
+    -ms-transform: translateY(20px);
+    -webkit-transform: translateY(20px);
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* line 10, ../../core/styles/sass/partials/_toast.scss */
+.ui.message.container-toast {
+  -moz-animation: fadeInUp 1000ms ease;
+  -webkit-animation: fadeInUp 1000ms ease;
+  animation: fadeInUp 1000ms ease;
+  bottom: 2em;
+  left: 2em;
+  position: fixed;
+  z-index: 5;
+}
+
+/*	==================================================
+	About
+	==================================================  */
+/*	==================================================
+	Contact
+	==================================================  */
+/*	==================================================
+	Home
+	==================================================  */
+/* line 10, ../../core/styles/sass/pages/_home.scss */
+#todo-list .btn-add i, #todo-list .btn-add {
+  color: #676767;
+}

@@ -1,0 +1,16 @@
+@import "compass";
+@import "animate";
+@import "../helpers/-all";
+/*	==================================================
+	Toast
+	==================================================  */
+
+
+@include animate-fadeInUp();
+.ui.message.container-toast{
+  @include animation(fadeInUp $duration-transition-long $timing-transition-default);
+  bottom : 2em;
+  left : 2em;
+  position : fixed;
+  z-index: 5;
+}

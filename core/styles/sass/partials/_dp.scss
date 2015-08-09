@@ -1,0 +1,71 @@
+@import "compass";
+@import "../helpers/-all";
+/*	==================================================
+	Different Perspective Logo/Login
+	==================================================  */
+
+$width-logo: 64px; // Just a guess
+$height-logo-px: 40px;
+$duration-transition-dp-ms: 250ms !default;
+$timing-transition-dp: cubic-bezier(0.52, -0.03, 0.51, 1.415) !default;
+#dp {
+  @include transition(background-position $duration-transition-dp-ms $timing-transition-dp);
+  text-align: center;
+  width: 230px;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: .75em;
+  background: url(../img/powered.png) no-repeat;
+  background: url(../img/powered.svg) no-repeat;
+  background-position: center top;
+  background-size: 100% 200%;
+  display: block;
+  position: relative;
+  top: 2.5em;
+
+  a {
+    @include scale(0);
+
+    @include transition(
+            transform $duration-transition-dp-ms $timing-transition-dp,
+            background-position $duration-transition-dp-ms $timing-transition-dp
+    );
+    color: #ffffff;
+    text-decoration: none;
+    position: relative;
+    top: 25%;
+    text-align: center;
+    width: 19%;
+    padding: 0 15%;
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  #dp-powered {
+    float: left;
+    text-align:right;
+    padding-right: $width-logo/2;
+    width:25%;
+    padding-left:10%;
+  }
+
+  #dp-login {
+    float: right;
+    text-align:left;
+    padding-left: $width-logo/2;
+
+  }
+
+  a:hover {
+    color: #bc6c50;
+  }
+}
+
+#dp:hover {
+  background-position: center bottom;
+  a {
+    @include scale(1);
+  }
+}

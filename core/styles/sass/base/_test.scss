@@ -1,0 +1,249 @@
+@import "compass";
+@import "../helpers/-all";
+/*	==================================================
+	Test
+	==================================================  */
+
+html,
+body{
+  height: 100%;
+}
+
+body{
+  position: relative;
+  overflow-y: scroll;
+
+  &.pushable {
+
+    > .pusher {
+      background: #eee;
+    }
+
+  }
+}
+
+.app-title{
+  @include translate3d(0,0,0);
+  @include box-shadow(0 1px 6px -1px $color-light-grey);
+  @include font-lobster;
+  background-color: $color-yellow-v1;
+//  background-color: darken($color-blue, 15%);
+  color: $color-red;
+  margin: 0 auto;
+  height: 3em;
+  left: 0;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  right: 0;
+  z-index: 10;
+
+  &:before{
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  h1{
+//    @include text-shadow(0 0 2px lighten($color-yellow-v1, 15%));
+    @include font-lobster;
+    display: inline-block;
+    font-size: 2.5em;
+    line-height: 1em;
+    margin: 0;
+    max-width: 10em;
+    padding: .15em 0;
+    vertical-align: middle;
+  }
+}
+#toggle-sidebar{
+  @include translate3d(0,0,0);
+//  @include box-shadow(none !important);
+//  background: transparent;
+  padding-right: 0;
+  position: fixed;
+  top: 3em;
+  left: 0;
+  z-index: 5;
+}
+
+#todo-list{
+  padding-top: 3em;
+
+}
+
+
+.wrap-toggle-section{
+//  @include transition(none);
+//  max-height: 0;
+  display: none;
+  overflow: hidden;
+
+  &.toggled{
+//    @include transition(max-height $duration-transition-default $timing-transition-default);
+//    max-height: none;
+  }
+}
+
+.ui.left.overlay.sidebar{
+  z-index: 3;
+}
+
+#list{
+  @include box-sizing(border-box);
+  @include transition(visiblity $duration-transition-default linear);
+  display: inline-block;
+//  max-height: calc(100% - 7.5em);
+  margin: 0 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 0 1em 0;
+  text-align: center;
+  width: 100%;
+  visibility: hidden;
+
+  @at-root body.initialized &{
+    visibility: visible;
+    @include animation(fadeIn $duration-transition-default);
+  }
+
+  > .card{
+    display: inline-block;
+    text-align: left;
+    vertical-align: top;
+  }
+}
+
+.ui.cards > .card{
+  width: 280px;
+}
+
+.todo-item{
+//  @include box-sizing(border-box);
+//  @include box-shadow(0 2px 8px -2px $color-black);
+//  background-color: $color-white;
+//  border-bottom: 1px $color-light-blue solid;
+//  border-bottom: 1px darken($color-blue, 15%) solid;
+//  display: block;
+//  margin: 0 auto .5em;
+//  padding: 1em .5em;
+//  text-align: center;
+
+//  &:first-of-type,
+//  &:first-child{
+//    border-top: 1px solid $color-blue;
+//  }
+
+//  > *{
+//    vertical-align: middle;
+//  }
+
+//
+//  .due-date-input-wrap{
+//    @media (min-width: 400px) and (max-width: 560px){
+//      display: block;
+//    }
+//  }
+
+//  input,
+//  .btn-remove{
+//    width: 100%;
+//    display: inline-block;
+//    margin: .5em 1%;
+//  }
+
+  .wrap-date-input,
+  .wrap-name-input,
+  .wrap-time-input {
+    margin: .5em auto;
+  }
+
+
+  input{
+//    @include border-radius($border-radius-input-px);
+//    @include box-sizing(border-box);
+//    @include font-open-source-sans-pro;
+//    background-color: $color-white;
+//    border: 0;
+    color: $color-red;
+//    display: inline-block;
+//    padding: .5em;
+//
+//
+//    &[name='name']{
+//      width: 18em;
+//    }
+//
+//    &[name='time']{
+//      width: 4.75em;
+//      text-align: center;
+//    }
+//
+//    &[name='date']{
+//      width: 7.5em;
+//      text-align: center;
+//    }
+  }
+
+  .extra.content{
+
+    .button{
+      margin: 0.5em auto;
+    }
+  }
+//
+//  .btn-remove{
+//    width: 100%;
+//    @include border-radius($border-radius-button-px);
+//    @include box-sizing(border-box);
+//    @include font-fira-sans;
+//    @include transition(border $duration-transition-default $timing-transition-default);
+//    background-color: transparent;
+//    border: 2px $color-white solid;
+//    color: $color-white;
+//    padding: .5em;
+//    min-width: 5em;
+//    text-transform: uppercase;
+//
+//    &:hover{
+//      border-color: red;
+//    }
+//  }
+}
+
+.btn-add{
+  @include translate3d(0,0,1px);
+//  @include box-sizing(border-radius);
+//  @include border-radius($border-radius-button-px);
+//  @include transition(
+//          background-color $duration-transition-default $timing-transition-default,
+//          visibility $duration-transition-default $timing-transition-default
+//  );
+//  @include font-fira-sans;
+//  background-color: transparent;
+//  border: 2px $color-yellow solid;
+//  color: $color-yellow;
+//  display: block;
+//  max-height: 6.5em;
+//  max-width: 10em;
+//  margin: 6px auto 0;
+//  padding: 0.5em;
+  bottom: 2em;
+  left: auto;
+  position: fixed;
+  right: 2em;
+  top: auto;
+//  text-align: center;
+//  text-transform: uppercase;
+  visibility: hidden;
+  z-index: 5;
+
+//  &:hover{
+//    background-color: darken($color-blue, 20%);
+//  }
+
+  @at-root body.initialized &{
+    visibility: visible;
+  }
+}

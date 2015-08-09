@@ -1,0 +1,19 @@
+{
+  "ports" : {
+    "secure" : 5001,
+    "unsecure" : 5000
+  },
+  "scripts": [
+    "/js/modules/vendors/require.js",
+    "/js/app.js"
+  ],
+  "stylesheets": [
+    "/vendors/materialize-src/stylesheets/materialize.css",
+    "/stylesheets/normalize.css",
+    "/vendors/timepicker/default.css",
+    "/vendors/timepicker/default.date.css",
+    "/vendors/timepicker/default.time.css",
+    "/stylesheets/style.css",
+    "/vendors/semanticui/semantic.css"
+  ]
+}

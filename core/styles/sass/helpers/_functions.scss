@@ -1,0 +1,50 @@
+@import "variables";
+@function dec-to-hex($d) {
+  $hexVals: "A" "B" "C" "D" "E" "F";
+  $base: 16;
+  $quotient: $d;
+  $result: "";
+  @if $d == 0 {
+    $result: "00";
+  }
+  @while $quotient != 0 {
+    $mod: $quotient % $base;
+    $quotient: floor($quotient / $base);
+    @if $mod > 9 {
+      $mod: nth($hexVals, $mod - 9);
+    }
+    @if $d < $base {
+      $result: "0" + $mod;
+    } @else {
+      $result: $mod + $result;
+    }
+  }
+  @return $result;
+}
+
+@function hex-to-char($hex){
+  $foo: 83;
+  $withslash: "\"\\#{dec-to-hex($hex)}\"";
+  @return unquote($withslash);
+}
+
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+@function pixel-to-em($px-size, $default-size: $font-size-body-default-px-sans){
+  $em-size: $px-size/$default-size;
+  @return $em-size;
+}
+
+@function pixel-to-em-final($px-size, $adjusted-px-size: false, $default-size: $font-size-body-default-px-sans){
+  $stripped-px-size: strip-units($px-size);
+  $em-size: $stripped-px-size / $default-size;
+  @if ($adjusted-px-size){
+    $stripped-adjusted-px-size: strip-units($adjusted-px-size);
+    $em-adjusted-size: ($em-size * 1em) / pixel-to-em($stripped-adjusted-px-size);
+    @return $em-adjusted-size;
+  } @else{
+    @return $em-size * 1em;
+  }
+}

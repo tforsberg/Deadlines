@@ -1,0 +1,76 @@
+@import "compass";
+@import "functions";
+
+$border-radius-button-px: 3px;
+$border-radius-input-px: 3px;
+
+$color-powered-hover:#bc6c50;
+$color-white: #fff;
+$color-blue: #0968B2;
+$color-light-blue: #147BCC;
+$color-green: #27e833;
+$color-red: #B22622;
+$color-black: #000;
+$color-light-grey: #ACACAC;
+$color-grey: #676767;
+$color-yellow: #FAFF19;
+$color-yellow-v2: #E2CF4A;
+$color-yellow-v1: #FCF09E;
+
+$font-size-body-default-px-sans: 16;
+$font-size-body-default-px: $font-size-body-default-px-sans +px;
+
+
+$duration-transition-dp-ms: 250ms;
+$duration-transition-default: 400ms;
+$duration-transition-long: 1000ms;
+
+$timing-transition-dp: cubic-bezier(0.52, -0.03, 0.51, 1.415);
+$timing-transition-default: ease;
+
+$url-comment-icon: url('../img/arrow487.svg');
+@import "compass";
+@import "functions";
+
+$breakpoint-mobile-px-sans: 768;
+$breakpoint-mobile: $breakpoint-mobile-px-sans * 1px;
+$breakpoint-tablet-px-sans: 1024;
+$breakpoint-tablet: $breakpoint-tablet-px-sans * 1px;
+
+$color-white: #fff;
+$color-black: #000;
+$color-powered-hover:#bc6c50;
+
+$font-size-body-default-px-sans: 16;
+$font-size-body-default-px: $font-size-body-default-px-sans +px;
+
+
+$duration-transition-default-ms: 400ms;
+$duration-transition-dp-ms: 250ms;
+$duration-transition-default: 0.4s;
+
+$max-width-page-content-px-sans: 1024;
+
+$media-mobile: '(max-width:'+$breakpoint-mobile+")";
+$media-larger-than-mobile: '(min-width:'+$breakpoint-mobile+')';
+$media-tablet: '(min-width:'+$breakpoint-mobile+') + (max-width:'+$breakpoint-tablet+")";
+$media-larger-than-tablet: '(min-width:'+$breakpoint-tablet+')';
+
+$timing-transition-dp: cubic-bezier(0.52, -0.03, 0.51, 1.415);
+$timing-transition-default: ease;
+
+$url-500: url('http://placehold.it/500x500');
+$url-icon-logo: url('../img/logo.svg');
+$url-icon-fb: url('../img/icon-fb.svg');
+$url-icon-tw: url('../img/icon-twitter.svg');
+$url-icon-ln: url('../img/icon-linkedin.svg');
+$url-icon-gg: url('../img/icon-google.svg');
+$url-icon-in: url('../img/icon-instagram.svg');
+$url-1920: url('http://placehold.it/1920x1080');
+$url-960: url('http://placehold.it/960x960');
+
+$char-icon-yt: '\e001';
+$char-icon-tw: '\e002';
+$char-icon-ln: '\e003';
+$char-icon-in: '\e004';
+$char-icon-fb: '\e005';

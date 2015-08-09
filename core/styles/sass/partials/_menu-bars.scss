@@ -1,0 +1,82 @@
+@import "compass";
+@import "../helpers/-all";
+/*	==================================================
+	Hamburger Menu
+	==================================================  */
+$bar-color: green;
+$width-hamburger-menu-bar-px: 20px;
+$height-hamburger-menu-bar-px: 4px;
+#hamburger-menu, .hamburger-menu {
+  width: 2em;
+  height: 2em;
+  position: absolute;
+  color: #fff;
+  right: 80px;
+  top: 46px;
+  display: block;
+  z-index: 2;
+  //  padding-right: 30px;
+
+
+  &.clicked{
+    .menubars {
+      background-color: rgba(255,255,255,0);
+
+      &:before {
+        @include rotate(45deg);
+        width: 1.4 * $width-hamburger-menu-bar-px;
+      }
+
+      &:after {
+        @include rotate(-45deg);
+        width: 1.4 * $width-hamburger-menu-bar-px;
+      }
+    }
+  }
+
+
+  .menubars {
+    @include transition(
+            background-color $duration-transition-default $timing-transition-default
+    );
+    width: $width-hamburger-menu-bar-px;
+    height: $height-hamburger-menu-bar-px;
+    background: $bar-color;
+    position: absolute;
+    right: 0;
+
+    &:before {
+      @include transition(
+              top $duration-transition-default $timing-transition-default,
+              right $duration-transition-default $timing-transition-default,
+              bottom $duration-transition-default $timing-transition-default,
+              transform $duration-transition-default $timing-transition-default
+      );
+      @include transform-origin(0,0);
+      display: block;
+      content: "";
+      background-color: $bar-color;
+      top:  -$width-hamburger-menu-bar-px/2;
+      width: $width-hamburger-menu-bar-px;
+      height: $height-hamburger-menu-bar-px;
+      position: absolute;
+    }
+
+    &:after {
+      @include transition(
+              top $duration-transition-default $timing-transition-default,
+              right $duration-transition-default $timing-transition-default,
+              bottom $duration-transition-default $timing-transition-default,
+              transform $duration-transition-default $timing-transition-default
+      );
+      @include transform-origin(0,0);
+      display: block;
+      content: "";
+      background: $bar-color;
+      bottom: -$width-hamburger-menu-bar-px/2;
+      width: $width-hamburger-menu-bar-px;
+      height: $height-hamburger-menu-bar-px;
+      position: absolute;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6 lte7 lte8 lte9"><![endif]-->
+<!--[if IE 7 ]><html class="ie ie7 lte7 lte8 lte9"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8 lte8 lte9"><![endif]-->
+<!--[if IE 9 ]><html class="ie ie9 lte9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html><!--<![endif]-->
+<head>
+    <meta charset="<%= data.charset %>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <meta property="og:title" content="<%= data.title %>" />
+    <meta property="og:url" content="<%= data.url %>" />
+
+    <title><%= data.title %></title>
+    <link rel="profile" href="http://gmpg.org/xfn/11" />
+    <link rel="icon" type="image/png" href="<%= data.favicon %>" />
+    <!--[if lt IE 9]>
+    <script src="https://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+    <![endif]-->
+
+    <%
+    _.forEach(data.stylesheets, function(stylesheet) {
+        %>
+        <link href="<%= stylesheet.href %>" rel="stylesheet" />
+        <%
+    });
+    %>
+
+    <%
+    _.forEach(data.scripts, function(script) {
+        if(script.placement.header) {
+            %>
+            <script type="<%= script.type %>" src="<%= script.src %>"></script>
+            <%
+        };
+    });
+    %>
+    </head>
+    <body class="<%= data.body.className %>"  ontouchstart="">

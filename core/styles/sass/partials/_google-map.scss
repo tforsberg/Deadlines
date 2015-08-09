@@ -1,0 +1,21 @@
+@import "compass";
+@import "../helpers/-all";
+/**********************************
+Google Maps
+***********************************/
+
+.google-map-infowindow{
+  text-align: center;
+  min-width:10em;
+  p{
+    font-weight: bold;
+    display:block;
+  }
+
+  a{
+    font-size: 10px;
+    text-decoration: none;
+    display:block;
+    width:100%;
+  }
+}

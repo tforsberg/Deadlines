@@ -1,0 +1,120 @@
+@import "compass";
+@import "../helpers/-all";
+/*	==================================================
+	Comments
+	==================================================  */
+$darken-comment-percentage: 15%;
+
+.comment-bar-toggle{
+
+  .label-hide{
+    display: inline-block;
+    overflow: hidden;
+    max-width: 0;
+    vertical-align: bottom;
+  }
+
+  &.toggled{
+
+    .label-hide{
+      max-width: 100%;
+    }
+  }
+}
+
+.comment-bar{
+//  @include transition(max-height $duration-transition-default $timing-transition-default);
+//  border-bottom: 2px solid $color-white;
+//  max-height: 2em;
+  padding-bottom: 1em;
+//  max-height: 0;
+  overflow: hidden;
+  text-align: left;
+  width: 100%;
+
+//  &.toggled{
+//    max-height: none;
+
+//    .comment-bar-toggle{
+//      @include rotateZ(-90deg);
+//    }
+//  }
+
+  .comment-input{
+    max-height: 1em !important;
+  }
+
+//  .comment-bar-toggle{
+//    @include transition (transform $duration-transition-default $timing-transition-default);
+//    @include rotateZ(90deg);
+//    background: $url-comment-icon center no-repeat;
+//    background-size: contain;
+//    display: inline-block;
+//    height: 1em;
+//    margin: .5em 0;
+//    width: 25%;
+//  }
+
+//  .wrap-comments{
+//    @include box-sizing(border-box);
+////    background-color: $color-white;
+//    margin: 1em auto 0;
+//    text-align: left;
+//    padding: 1em;
+//  }
+
+
+//  .wrap-comment{
+//    width: 100%;
+//    border-bottom: 1px solid $color-grey;
+//    color: darken($color-blue, $darken-comment-percentage);
+//  }
+
+//  .message{
+//    display: inline-block;
+//    text-align: left;
+//    width: calc(100% - 10.5em);
+//  }
+//
+//  .author{
+//    font-size: .8em;
+//    font-weight: bold;
+//  }
+//
+//  .date{
+//    color: $color-grey;
+//    display: inline-block;
+//    font-size: .7em;
+//    float:right;
+//    padding: 1em 0 0;
+//    text-align: right;
+//    width: 10em;
+//  }
+
+//  .wrap-input{
+//    padding: 1em 0;
+//    text-align: left;
+//    width: 100%;
+//
+//    .comment-input{
+//      @include box-sizing(border-box);
+//      display: inline-block;
+//      padding: .5em;
+//      vertical-align: middle;
+//      width: calc(100% - 10em);
+//    }
+//
+//    .btn-add-comment{
+//      @include border-radius($border-radius-button-px);
+//      border: 2px solid $color-green;
+//      background: transparent;
+//      color: $color-green;
+//      display: inline-block;
+//      padding: .5em 1em;
+//      margin: 0 .5em;
+//      width: 6.5em;
+//      text-transform: uppercase;
+//      vertical-align: middle;
+//    }
+//  }
+}

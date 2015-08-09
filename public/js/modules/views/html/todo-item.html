@@ -1,0 +1,92 @@
+
+    <!--<a class="image">-->
+        <!--<img src="//placehold.it/480x480">-->
+    <!--</a>-->
+    <div class="content">
+        <div class="header">
+            <div class="ui input fluid wrap-name-input">
+                <input type="text" name="name" value="<%= model.get('name') %>" />
+            </div>
+        </div>
+        <div class="meta">
+            <a class="date">Due <%= utils.timeUntil(model.get('dueDate')) %></a>
+        </div>
+        <div class="description">
+            Details
+        </div>
+        <div class="ui action input fluid wrap-time-input">
+            <input name="time" class="time-input duedate" value="<%= model.getFormattedTime() %>" />
+            <div class="ui icon button btn-set-time">
+                <i class="wait icon"></i>
+            </div>
+        </div>
+        <div class="ui action input fluid wrap-date-input">
+            <input name="date" class="date-input duedate" value="<%= model.getFormattedDate() %>" />
+            <div class="ui icon button  btn-set-date">
+                <i class="calendar icon"></i>
+            </div>
+        </div>
+        <div class="extra content">
+            <div class="ui grid">
+                <div class="four wide column">
+                    <div class="ui icon button toggle-comment-bar">
+                        <i class="comments icon"></i>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <div class="ui icon button toggle-options">
+                        <i class="options icon"></i>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <div class="ui icon button btn-save">
+                        <i class="cloud icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrap-toggle-section wrap-options-menu">
+            <button class="ui red button fluid btn-remove">Remove</button>
+        </div>
+        <div class="comment-bar wrap-toggle-section <% if(this.$('.comment-bar').hasClass('toggled')){%>toggled<%}%>"
+        style="<% if(this.$('.comment-bar').hasClass('toggled')){ %>display:block<% } %>" >
+            <a class="comment-bar-toggle" href="#"></a>
+            <div class="ui segment">
+                <div class="ui comments wrap-comments">
+                    <h3 class="ui dividing header">Comments</h3>
+                    <div class="container-comments">
+                        <% _.each(model.get('comments'), function(comment) { %>
+                            <div class="comment wrap-comment">
+                                <a class="avatar">
+                                    <img src="<%= (comment.iconUrl || 'https://placehold.it/128x128') %>">
+                                </a>
+                                <div class="content">
+                                    <a class="author"><%= comment.author %></a>
+                                    <div class="metadata">
+                            <span class="date">
+                                <%= utils.formatDate(comment.postTime, "h:mm A - M.D.YY") %>
+                            </span>
+                                    </div>
+                                    <div class="text">
+                                        <%= comment.body %>
+                                    </div>
+                                    <div style='display:none' class="actions">
+                                        <a class="delete">delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                    <form class="ui reply form wrap-input">
+                        <div class="field">
+                            <textarea  class="comment-input"></textarea>
+                        </div>
+                        <div class="ui blue labeled submit icon button btn-add-comment">
+                            <i class="icon send"></i> Send
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

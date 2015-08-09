@@ -1,0 +1,20 @@
+@import "compass";
+@import "animate";
+@import "../helpers/-all";
+/*	==================================================
+	Sidebar
+	==================================================  */
+
+#sidebar{
+
+  .toggle-sort{
+
+    i {
+      @include transition(color $duration-transition-default $timing-transition-default);
+
+      &.active {
+        color: $color-yellow-v1;
+      }
+    }
+  }
+}

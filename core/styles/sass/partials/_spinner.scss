@@ -1,0 +1,102 @@
+@import "compass";
+@import "../helpers/-all";
+/*	==================================================
+	Spinner
+	==================================================  */
+.loader,
+.loader:before,
+.loader:after {
+  @include border-radius(50%);
+}
+.loader:before,
+.loader:after {
+  position: absolute;
+  content: '';
+}
+.loader:before {
+  @include border-radius(10.2em 0 0 10.2em );
+  @include animation(load2 2s infinite ease 1.5s);
+  @include transform-origin(5.2em 5.1em);
+  width: 5.2em;
+  height: 10.2em;
+  background: #0dc5c1;
+  top: -0.1em;
+  left: -0.1em;
+}
+.loader {
+  @include box-shadow(inset 0 0 0 1em $color-white);
+  @include translateZ(0);
+  font-size: 11px;
+  text-indent: -99999em;
+  margin: 55px auto;
+  position: relative;
+  width: 10em;
+  height: 10em;
+}
+.loader:after {
+  @include transform-origin( 0px 5.1em);
+  @include animation(load2 2s infinite ease);
+  @include border-radius( 0 10.2em 10.2em 0);
+  width: 5.2em;
+  height: 10.2em;
+  background: #0dc5c1;
+  top: -0.1em;
+  left: 5.1em;
+}
+@-webkit-keyframes load2 {
+  0% {
+    @include rotate(0deg);
+  }
+  100% {
+    @include rotate(360deg);
+  }
+}
+@keyframes load2 {
+  0% {
+    @include rotate(0deg);
+  }
+  100% {
+    @include rotate(360deg);
+  }
+}
+
+
+.spinner{
+  bottom: 0;
+  height: 40px;
+  left: 0;
+  margin: 100px auto;
+  position: fixed;
+  right: 0;
+  top: calc(50vh - 100px);
+  width: 40px;
+
+  @at-root body.initialized &{
+    display: none;
+  }
+}
+
+@keyframes bounce2 {
+  0% { @include scale(0) }
+  50% { @include scale(1) }
+  100% { @include scale(0) }
+}
+
+
+.double-bounce1,
+.double-bounce2 {
+  @include animation(bounce2 2000ms infinite ease-in-out);
+  @include border-radius(50%);
+  @include opacity(.6);
+  background-color: $color-white;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+}
+
+.double-bounce2 {
+  @include animation-delay(-1000ms);
+}

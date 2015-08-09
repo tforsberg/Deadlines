@@ -1,0 +1,20 @@
+@import "compass";
+@import "helpers/-all";
+#test1{
+  background: red;
+  display: inline-block;
+  height: calc(100% - 2em);
+  width: 50%;
+
+}
+
+#test2{
+  background: blue;
+  display: inline-block;
+  height: calc(100% - 2em);
+  width: calc(50%- 5px);
+}
+
+.container{
+  height: 10em;
+}
