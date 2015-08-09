@@ -370,7 +370,7 @@ var server = http.createServer(
     function (request, response) {
         var path = String(request.url),
         pathObj = url.parse(path, true);
-        response.setHeader('Access-Control-Allow-Origin', googleAuthRedirectURI;
+        response.setHeader('Access-Control-Allow-Origin', googleAuthRedirectURI);
 
         switch (pathObj.pathname) {
             case '/deadlines':
