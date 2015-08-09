@@ -88,7 +88,7 @@ function handleGoogleCredentials(request, response) {
                     'Set-Cookie' : cookie.serialize(cookieIdString, id, {
                         maxAge : 60*60*24
                     }),
-                    'Location': 'http://'+hostName+':'+portNumber+'/deadlines'
+                    'Location': googleAuthRedirectURI
                 });
                 response.end();
             } else {
