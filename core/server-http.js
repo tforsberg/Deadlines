@@ -5,6 +5,7 @@ var https = require("https"),
     config = require('../config'),
     hostName = config.hostname,
     portNumber = require('../config').ports.unsecure,
+    googleAuthRedirectURI = 'http://'+((config.isDevMode)?hostName+':'+portNumber:'khalidhoffman.solutions')+"/deadlines",
     _ = require('lodash'),
     fs = require('fs'),
     url = require('url'),
@@ -34,7 +35,7 @@ function handleGoogleCredentials(request, response) {
         'code': pathObj.query['code'],
         'client_id': '196527928799-s5fpgvs7un7lkmrqf15akk3lj0fdb8os.apps.googleusercontent.com',
         'client_secret': 'Hu-IkwGhHkqtrG4-GM-Cy3tX',
-        'redirect_uri': 'http://'+hostName+':'+portNumber+'/deadlines',
+        'redirect_uri': googleAuthRedirectURI,
         'grant_type': 'authorization_code'
     });
 
@@ -339,7 +340,7 @@ function handleLoginRequest(request, response){
         id = 'user' + users.length,
         googleLoginParams = {
             'response_type': 'code',
-            'redirect_uri': 'http://'+hostName+':'+portNumber+'/deadlines',
+            'redirect_uri': googleAuthRedirectURI,
             'client_id': '196527928799-s5fpgvs7un7lkmrqf15akk3lj0fdb8os.apps.googleusercontent.com',
             'scope': 'https://www.googleapis.com/auth/plus.login',
             'state': id
