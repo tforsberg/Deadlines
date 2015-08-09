@@ -9,8 +9,6 @@ var https = require("https"),
     fs = require('fs'),
     url = require('url'),
     utils = require('./utils'),
-    crypto = require('crypto'),
-    md5 = crypto.createHash('md5'),
     querystring = require('querystring'),
     mime = require('mime'),
     mongoose = require('./mongodb/mongoose'),
@@ -64,8 +62,8 @@ function handleGoogleCredentials(request, response) {
                 console.log('login success!');
                 //var id = 'user'+users.length;
                 //console.log('pathObj: ', pathObj);
-                //console.log('api-request.data: ', data);
-                var id = md5.update(pathObj.query['code']).digest('hex');
+                console.log('api-request.data: ', pathObj, parsedData);
+                var id = require('crypto').createHash('md5').update(pathObj.query['code']).digest('hex');
                 users[id] = parsedData['access_token'];
                 mongoDB.schemas.User.findOneAndUpdate({
                         'id': id
@@ -78,19 +76,23 @@ function handleGoogleCredentials(request, response) {
                     }, function (err) {
                         if (err) {
                             console.error('Failed to save user credentials:', err);
+                            console.warn('no access_token received: ', data);
+                            response.writeHead(204);
+                            response.end();
                         } else {
                             console.log('Saved user credentials');
+
+                            //console.log('users: ', users);
+                            response.writeHead(302, {
+                                "Content-Type": "text/html",
+                                'Set-Cookie' : cookie.serialize(cookieIdString, id, {
+                                    maxAge : 60*60*24
+                                }),
+                                'Location': googleAuthRedirectURI
+                            });
+                            response.end();
                         }
                     });
-                //console.log('users: ', users);
-                response.writeHead(302, {
-                    "Content-Type": "text/html",
-                    'Set-Cookie' : cookie.serialize(cookieIdString, id, {
-                        maxAge : 60*60*24
-                    }),
-                    'Location': googleAuthRedirectURI
-                });
-                response.end();
             } else {
                 console.warn('no access_token received: ', data);
                 response.writeHead(204);
