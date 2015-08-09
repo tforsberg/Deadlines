@@ -2,9 +2,16 @@ var CSS = require('./core/models/stylesheet.js'),
     Script = require('./core/models/script.js'),
     fs = require('fs'),
     config = JSON.parse(fs.readFileSync('site-config.json')),
-    isDevMode = require('os').hostname().toLowerCase().indexOf('kah')>-1;
+    isDevMode = require('os').hostname().toLowerCase().indexOf('kah')>-1,
+    hostnames = {
+        development: 'localhost',
+        production: 'www.khalidhoffman.solutions'
+    };
+
+
 module.exports = {
-    hostname : (isDevMode)?'localhost':'khalidhoffman.solutions',
+    hostname : (isDevMode)?hostnames['development']:hostnames['production'],
+    hostnames : hostnames,
     basePath : '/deadlines',
     isDevMode : isDevMode,
     ports : {
