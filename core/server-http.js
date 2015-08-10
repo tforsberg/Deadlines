@@ -351,6 +351,7 @@ var server = http.createServer(
 
         switch (pathObj.pathname) {
             case '/deadlines':
+            case '/deadlines/':
                 //console.log('[/deadlines]request.url: ', pathObj);
                 //console.log('[/deadlines]request.headers: ', request.headers);
 
@@ -361,10 +362,19 @@ var server = http.createServer(
                 }
                 break;
             case '/login':
+            case '/login/':
                 handleLoginRequest(request,response);
                 break;
             case '/tasklist':
+            case '/tasklist/':
                 handleDataRequest(request,response);
+                break;
+            case '/':
+                response.writeHead(302, {
+                    "Content-Type": "text/html",
+                    'Location': 'http://khalidhoffman.info'
+                });
+                response.end();
                 break;
             default :
                 handleFileRequest(request, response);
