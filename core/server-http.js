@@ -111,7 +111,8 @@ function handlePageRequest(request , response, id) {
     var path = String(request.url),
         id = false;
 
-    var idCookie = cookie.parse(request.headers['cookie'])[cookieIdString];
+
+    var idCookie = (request.headers['cookie'])?cookie.parse(request.headers['cookie'])[cookieIdString]:false;
     if(idCookie){
         id = idCookie;
     }
