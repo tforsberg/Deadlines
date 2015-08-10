@@ -77,11 +77,13 @@ function handleGoogleCredentials(request, response) {
                             response.end();
                         } else {
                             console.log('Saved user credentials');
-
+                            var tomorrow = new Date();
+                            tomorrow.setDate(tomorrow.getDate() + 1);
                             response.writeHead(302, {
                                 "Content-Type": "text/html",
                                 'Set-Cookie' : cookie.serialize(cookieIdString, id, {
-                                    maxAge : 60*60*24
+                                    maxAge : 60*60*24,
+                                    expires : tomorrow
                                 }),
                                 'Location': googleAuthRedirectURI
                             });
