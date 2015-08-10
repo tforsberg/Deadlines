@@ -7,7 +7,7 @@ var Page = function(passedArgs){
         title : 'Title',
         charset: 'utf-8',
         url : 'https://localhost', // get host url
-        favicon : 'https://placehold.it/500x500',
+        favicon : 'deadlines/favicon.ico',
         body : {
             className : 'bodyclass'
         },
