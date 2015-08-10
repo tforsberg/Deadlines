@@ -19,12 +19,21 @@
 /* line 13, ../../core/styles/sass/base/_header.scss */
 .app-title .wrap-login-info {
   font-family: 'Source Sans Pro', sans-serif;
-  float: right;
-  position: relative;
-  right: 1em;
-  top: 25%;
+  bottom: 0;
+  display: table;
+  height: 100%;
+  padding-right: 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
 }
-/* line 21, ../../core/styles/sass/base/_header.scss */
+/* line 25, ../../core/styles/sass/base/_header.scss */
+.app-title .login-info {
+  display: table-cell;
+  vertical-align: middle;
+}
+/* line 30, ../../core/styles/sass/base/_header.scss */
 .app-title .wrap-text,
 .app-title .wrap-user-icon {
   display: inline-block;
@@ -33,17 +42,17 @@
   *zoom: 1;
   *display: inline;
 }
-/* line 26, ../../core/styles/sass/base/_header.scss */
+/* line 35, ../../core/styles/sass/base/_header.scss */
 .app-title .wrap-text {
   color: #bababa;
 }
 @media (max-width: 360px) {
-  /* line 26, ../../core/styles/sass/base/_header.scss */
+  /* line 35, ../../core/styles/sass/base/_header.scss */
   .app-title .wrap-text {
     display: none;
   }
 }
-/* line 34, ../../core/styles/sass/base/_header.scss */
+/* line 43, ../../core/styles/sass/base/_header.scss */
 .app-title .wrap-user-icon {
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -52,7 +61,7 @@
   overflow: hidden;
   width: 1.5em;
 }
-/* line 41, ../../core/styles/sass/base/_header.scss */
+/* line 50, ../../core/styles/sass/base/_header.scss */
 .app-title .user-icon {
   background-position: center;
   background-repeat: no-repeat;

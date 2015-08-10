@@ -13,7 +13,6 @@ var https = require("https"),
     mime = require('mime'),
     mongoose = require('./mongodb/mongoose'),
     htmlBuilder = require("./html-builder"),
-    users = [],
     devRegex = /kah/,
     scriptRegex = /\.(js)$/,
     imageRegex = /\.(jpg|jpeg|png|gif|svg)$/,
@@ -47,8 +46,7 @@ function handleGoogleCredentials(request, response) {
     };
 
     var req = https.request(apiRequestOptions, function (res) {
-        //console.log('STATUS: ' + res.statusCode);
-        //console.log('HEADERS: ' + JSON.stringify(res.headers));
+
         res.setEncoding('utf8');
         var data = '';
         res.on('data', function (chunk) {
@@ -60,16 +58,14 @@ function handleGoogleCredentials(request, response) {
             if (parsedData['access_token']) {
 
                 console.log('login success!');
-                //var id = 'user'+users.length;
                 //console.log('pathObj: ', pathObj);
                 console.log('api-request.data: ', pathObj, parsedData);
                 var id = require('crypto').createHash('md5').update(pathObj.query['code']).digest('hex');
-                users[id] = parsedData['access_token'];
                 mongoDB.schemas.User.findOneAndUpdate({
                         'id': id
                     },
                     {
-                        token : users[id]
+                        token : parsedData['access_token']
                     },
                     {
                         upsert: true
@@ -82,7 +78,6 @@ function handleGoogleCredentials(request, response) {
                         } else {
                             console.log('Saved user credentials');
 
-                            //console.log('users: ', users);
                             response.writeHead(302, {
                                 "Content-Type": "text/html",
                                 'Set-Cookie' : cookie.serialize(cookieIdString, id, {
@@ -112,33 +107,13 @@ function handleGoogleCredentials(request, response) {
 
 function handlePageRequest(request , response, id) {
     var path = String(request.url),
-        id = id || false;
-    if (request.headers['referer']) {
-        var refererURL = url.parse(request.headers['referer'], true);
-        console.log('refererURL: ', refererURL);
-        if (refererURL.query['continue']) {
-            var refererContinuePath = url.parse(refererURL.query['continue'], true);
-            id = refererContinuePath.query['state'];
-            console.log('refererContinuePath: ', refererContinuePath);
-        }
-    }
+        id = false;
 
     var idCookie = cookie.parse(request.headers['cookie'])[cookieIdString];
     if(idCookie){
-        id=idCookie;
-        console.log('id:', id);
+        id = idCookie;
     }
 
-    if(request.headers['etag']){
-        console.log("request.headers['etag']: ", request.headers['etag']);
-    }
-
-    if(request.headers['via']){
-        console.log("request.headers['via']:", request.headers['via']);
-    }
-    if(request.headers['ETag']){
-        console.log('user '+request.headers['ETag']+' requested login');
-    }
     //console.log('handlePageRequest: ', url.parse(path, true));
     mongoDB.schemas.User.find({
         'id' : id
@@ -163,7 +138,7 @@ function handlePageRequest(request , response, id) {
 
                 res.on('end', function () {
                     var credentials = JSON.parse(data);
-                    console.log('credentials: ', credentials);
+                    //console.log('credentials: ', credentials);
                     response.writeHead(200, {
                         "Content-Type": "text/html"
                     });
@@ -176,7 +151,7 @@ function handlePageRequest(request , response, id) {
             });
 
         } else {
-            console.log('request.url: ' + path + ' without id');
+            //console.log('request.url: ' + path + ' without id');
             response.writeHead(200, {
                 "Content-Type": "text/html"
             });
@@ -338,13 +313,11 @@ function handleLoginRequest(request, response){
     var path = String(request.url),
         googleLoginURI = '',
         googleLoginURIBase = 'https://accounts.google.com/o/oauth2/auth',
-        id = 'user' + users.length,
         googleLoginParams = {
             'response_type': 'code',
             'redirect_uri': googleAuthRedirectURI,
             'client_id': '196527928799-s5fpgvs7un7lkmrqf15akk3lj0fdb8os.apps.googleusercontent.com',
-            'scope': 'https://www.googleapis.com/auth/plus.login',
-            'state': id
+            'scope': 'https://www.googleapis.com/auth/plus.login'
         },
         paramIndex = 0;
 

@@ -12,10 +12,19 @@ $diameter-user-icon: 1.5em;
 
   .wrap-login-info {
     @include font-open-source-sans-pro();
-    float: right;
-    position: relative;
-    right: 1em;
-    top: 25%;
+    bottom: 0;
+    display: table;
+    height: 100%;
+    padding-right: 12px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+  }
+
+  .login-info{
+    display: table-cell;
+    vertical-align: middle;
   }
 
   .wrap-text,
